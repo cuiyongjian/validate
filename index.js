@@ -40,7 +40,7 @@ module.exports = function (input, rules, message = {}) {
                         break
                     case 'min':
                         let min = parseInt(checkRule[1])
-                        if (isNaN(input[field]) === true) {
+                        if (typeof (input[field]) !== 'number') {
                             // 字符串
                             if (input[field].length < min) {
                                 let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能小于' + min + '个字符'
@@ -56,7 +56,7 @@ module.exports = function (input, rules, message = {}) {
                         break
                     case 'max':
                         let max = parseInt(checkRule[1])
-                        if (isNaN(input[field]) === true) {
+                        if (typeof (input[field]) !== 'number') {
                             // 字符串
                             if (input[field].length > max) {
                                 let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 不能大于' + max + '个字符'
@@ -82,7 +82,7 @@ module.exports = function (input, rules, message = {}) {
             // 简单条件
             switch (rule) {
                 case 'numeric':
-                    if (isNaN(input[field]) === true) {
+                    if (typeof (input[field]) !== 'number') {
                         let msg = !!message[msgKey] === true ? message[msgKey] : field + ' 必须为数字'
                         throw new Error(msg)
                     }
